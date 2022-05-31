@@ -3,6 +3,7 @@ import sys
 import os
 from datetime import datetime
 
+## Reference field names to validate log file
 field_names = ['hit_time_gmt', 'date_time', 'user_agent', 'ip', 'event_list', 'geo_city', 'geo_region', 'geo_country', 'pagename', 'page_url', 'product_list', 'referrer']
 
 class SearchEngineRevenue():
