@@ -1,2 +1,3 @@
 pandas==1.4.2
 datetime
+jedi==0.17.2
