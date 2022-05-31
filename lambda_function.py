@@ -1,4 +1,5 @@
 import json
+import sys
 from revenue import SearchEngineRevenue
 
 def lambda_handler(event, context):
