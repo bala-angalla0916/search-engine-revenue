@@ -3,8 +3,12 @@ Transform: AWS::Serverless-2022-06-01
 Description: Search Engine Revenue
 
 Parameters:
-  SourceBucketName: search-engine-revenue-input    
-  DestinationBucketName: search-engine-revenue-output
+  SourceBucketName: 
+    Default: search-engine-revenue-input
+    Type: String
+  DestinationBucketName: 
+    Default: search-engine-revenue-output
+    Type: String
 
 Resources:
   ## S3 bucket
@@ -49,5 +53,5 @@ Outputs:
     Value: !Ref DestinationBucketName
     Description: S3 destination Bucket for object storage
   FunctionArn:
-    Value: !Ref ResizerFunction
-    Description: ResizerFunction function  Arn
+    Value: !Ref searchEngineRevenue
+    Description: searchEngineRevenue function  Arn
