@@ -1,10 +1,32 @@
 version: 0.2
+
 phases:
   install:
     commands:
+      - echo "[+] Scanning for security vulnerability within dependencies"
+      # - pipenv check (if pipenv is installed and a Pipfile is in place)
+      # - Alternatively: https://www.owasp.org/index.php/OWASP_Dependency_Check
+  pre_build:
+    commands:
+      - pip install pytest requests
+      - echo "[+] Running tests..."
+      - python -m pytest test/ -v
+  build:
+    commands:
+      - echo "[+] Installing dependencies...."
+      - pip install -r requirements.txt -t src/build/
+      - cp src/*.py src/build/
+      - echo "Starting SAM packaging `date` in `pwd`"
       - aws cloudformation package --template-file template.yaml --s3-bucket bangalla-lambda-pipeline --output-template-file outputSamTemplate.yaml
+  post_build:
+    commands:
+      - echo "SAM packaging completed on `date`"
+
 artifacts:
-  type: zip
   files:
-    - template.yaml
     - outputSamTemplate.yaml
+  discard-paths: yes
+
+cache:
+  paths:
+    - '/root/.cache/pip'
