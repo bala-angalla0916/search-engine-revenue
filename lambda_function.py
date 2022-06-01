@@ -4,7 +4,7 @@ from revenue import SearchEngineRevenue
 
 def lambda_handler(event, context):
     # TODO implement
-    logfile = sys.argv[1]
+    logfile = 'data.tsv'
     sengine = SearchEngineRevenue(logfile)
     sengine.get_revenue()
     
