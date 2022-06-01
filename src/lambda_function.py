@@ -1,5 +1,7 @@
 import json
 import sys
+import boto3
+import urllib.parse
 from revenue import SearchEngineRevenue
 
 def lambda_handler(event, context):
