@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2022-06-01
+Transform: AWS::Serverless-2016-10-31
 Description: Search Engine Revenue
 
 Parameters:
