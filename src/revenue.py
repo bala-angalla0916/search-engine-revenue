@@ -51,7 +51,7 @@ class SearchEngineRevenue():
     
     def load_tab_file(self, df):
         exec_date = self.get_date()        
-        file_nm = f'{exec_date}_SearchKeywordPerformance.tab'
+        file_nm = f's3://search-engine-revenue-output/{exec_date}_SearchKeywordPerformance.tab'
         df.to_csv(file_nm, sep='\t', index=False)
     
     def get_revenue(self):        
