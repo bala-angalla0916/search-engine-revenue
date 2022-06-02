@@ -19,6 +19,7 @@ def lambda_handler(event, context):
     print(key)
     try:
         response = s3.get_object(Bucket=bucket, Key=key)
+        print(response)
         df = pd.read_csv(response['Body'], sep='\t')
         print(df)
         return df
