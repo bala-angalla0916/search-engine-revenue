@@ -1,2 +1,3 @@
 pandas
 datetime
+s3fs
