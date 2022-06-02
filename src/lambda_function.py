@@ -21,7 +21,8 @@ def lambda_handler(event, context):
         response = s3.get_object(Bucket=bucket, Key=key)
         print(response)
         df = pd.read_csv(response['Body'], sep='\t')
-        print(df)
+        print(df['referrer'])
+        print(df.info())
         return df
     except Exception as e:
         print(e)
