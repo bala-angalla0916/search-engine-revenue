@@ -6,26 +6,25 @@ from datetime import datetime
 field_names = ['hit_time_gmt', 'date_time', 'user_agent', 'ip', 'event_list', 'geo_city', 'geo_region', 'geo_country', 'pagename', 'page_url', 'product_list', 'referrer']
 
 class SearchEngineRevenue():
-    def __init__(self, logfile):
-       self.logfile = logfile
+    def __init__(self, df):
+       self.df = df
 
     def get_date(self):
         exec_date = datetime.today().strftime('%Y-%m-%d')        
         return exec_date
 
        
-    def validate_file(self):
-        res = os.path.exists(self.logfile)
-        if res is True:            
-            print("File Exists")
+    def validate_df(self):
+        if self.df.empty:
+            print('DataFrame is empty!')  
+            exit      
         else:
-            print("File doesn't exists")
-            exit
+            print("DataFrame is Valid")
+            
             
     
-    def validate_fields(self):
-        df = pd.read_csv(self.logfile , sep='\t')
-        header_rec_file = df.columns.values.tolist()
+    def validate_fields(self):        
+        header_rec_file = self.df.columns.values.tolist()
         header_rec = set(header_rec_file)
         ref_fields = set(field_names)
         if header_rec == ref_fields:
@@ -34,14 +33,14 @@ class SearchEngineRevenue():
             print("Tab file doesn't have required field names! Please check tab file")
             exit
     
-    def read_file(self):
-        self.validate_file() 
+    def validate_input(self):
+        self.validate_df() 
         self.validate_fields() 
-        df = pd.read_csv(self.logfile, sep='\t')
-        return df
+        
 
-    def get_domain(self, df):
-        df = self.read_file()
+    def get_domain(self):
+        self.validate_input()
+        df=self.df
         res = df[df['referrer'].str.contains('search?', regex=False)]
         for index, row in  res.iterrows():        
             token=row['referrer'].split('http://')[1].split('/')[0]
@@ -55,10 +54,9 @@ class SearchEngineRevenue():
         file_nm = f'{exec_date}_SearchKeywordPerformance.tab'
         df.to_csv(file_nm, sep='\t', index=False)
     
-    def get_revenue(self):
-        log_df = self.read_file()
-        domain_df = self.get_domain(log_df)        
-        rev_df = log_df[log_df['pagename'].str.contains("order complete", case=False)]
+    def get_revenue(self):        
+        domain_df = self.get_domain()        
+        rev_df = self.df[self.df['pagename'].str.contains("order complete", case=False)]
 
         for index, row in rev_df.iterrows():
             prod = row['product_list'].split(';')[1].split('-')[0]
