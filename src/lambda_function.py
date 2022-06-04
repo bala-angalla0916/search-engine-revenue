@@ -33,7 +33,7 @@ def lambda_handler(event, context):
         logging.info("Hit list Metadata")
         logging.info(df.info())
         sEngine = SearchEngineRevenue(df)
-        res = sEngine.publish_revenue()
+        sEngine.publish_revenue()
         logging.info("Lambda Process Completed")
     except Exception as e:        
         logging.error('Error getting object {} from bucket {}. Make sure they exist and your bucket is in the same region as this function.'.format(key, bucket))

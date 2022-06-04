@@ -68,7 +68,7 @@ class SearchEngineRevenue():
         return final_df
 
     def publish_revenue(self):
-        final_df = self.get_revenue(self)
+        final_df = self.get_revenue()
         exec_date = self.get_date()        
         file_nm = f's3://search-engine-revenue-output/{exec_date}_SearchKeywordPerformance.tab'
         final_df.to_csv(file_nm, sep='\t', index=False)
