@@ -6,8 +6,9 @@ import io
 import os, sys
 import logging
 from mock import patch, Mock
-from src.revenue import SearchEngineRevenue
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..","..",'src'))
+from src.revenue import SearchEngineRevenue
+
 logging.basicConfig(filename ='app.log', level = logging.ERROR)
 
 
