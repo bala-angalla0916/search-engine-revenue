@@ -3,6 +3,7 @@ Coding exercise for search engine revenue identification from hit level data.
 
 # AWS Apps used:
 Executing transformation:
+```
 AWS Lambda
 
 Storage:
@@ -23,7 +24,7 @@ Cloudwatch
 Roles created in AWS:
 Cloudformation role
 Lambda role
-
+```
 
 # Process of Execution:
 

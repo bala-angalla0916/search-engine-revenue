@@ -1,10 +1,6 @@
 from moto import mock_s3
-import pandas as pd
-from src import lambda_function
-import boto3
-import pytest
 from unittest.mock import MagicMock, patch, PropertyMock
-from src import revenue
+
 
 
 test_s3_event = {

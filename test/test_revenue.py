@@ -3,10 +3,10 @@ import pytest
 import pandas as pd
 from datetime import datetime
 from unittest.mock import MagicMock, patch, PropertyMock
-from src import revenue
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..","..",'src'))
 from src.revenue import SearchEngineRevenue
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..","..",'src'))
+
 
 test_data = os.path.abspath(os.path.dirname(__file__) + '../../test')
 test_file=os.path.join(test_data, 'test_data.tsv')
