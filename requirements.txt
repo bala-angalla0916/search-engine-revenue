@@ -2,3 +2,6 @@ pandas
 datetime
 s3fs
 pytest
+mock
+boto3
+moto

@@ -12,7 +12,8 @@ phases:
     commands:
       - pip install -r requirements.txt
       - echo "[+] Running tests..."
-      - pytest test/
+      #- pytest test/
+      - python -m pytest --cov='src' test/
   build:
     commands:
       - echo "[+] Installing dependencies...."
